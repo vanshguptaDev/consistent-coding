@@ -1,0 +1,32 @@
+Solution 1
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<vector<int>> pascalTriangle(rowIndex+1);
+        for(int i=0; i<=rowIndex; i++){
+            pascalTriangle[i].resize(i+1);
+            for(int j=0; j<=i; j++){
+                if(j==0 || j==i){
+                    pascalTriangle[i][j]=1;
+                }else{
+                    pascalTriangle[i][j]=pascalTriangle[i-1][j-1]+pascalTriangle[i-1][j];
+                }
+            }
+        }
+        return pascalTriangle[rowIndex];
+    }
+};
+
+Solution 2
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> pascalTriangleRow(rowIndex+1, 1);
+        for(int i=1; i<rowIndex; i++){
+            for(int j=i; j>0; j--){
+                pascalTriangleRow[j]=pascalTriangleRow[j]+pascalTriangleRow[j-1];
+            }
+        }
+        return pascalTriangleRow;
+    }
+};
